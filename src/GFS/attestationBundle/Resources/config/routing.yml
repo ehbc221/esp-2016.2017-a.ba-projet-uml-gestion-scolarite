@@ -1,0 +1,11 @@
+gfs_attestation:
+    path:     /attestation
+    defaults: { _controller: GFSattestationBundle:Attestation:index }
+
+gfs_attestation_reussite:
+    path:     /attestation/reussite/{id}
+    defaults: { _controller: GFSattestationBundle:Attestation:attestationReussite }
+
+gfs_attestation_passage:
+    path:     /attestation/passage/{id}
+    defaults: { _controller: GFSattestationBundle:Attestation:attestationPassage }

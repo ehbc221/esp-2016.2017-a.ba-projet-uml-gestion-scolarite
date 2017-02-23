@@ -1,0 +1,4 @@
+services:
+#    gf_sattestation.example:
+#        class: GFS\attestationBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

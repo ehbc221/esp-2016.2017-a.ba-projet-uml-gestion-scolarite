@@ -1,0 +1,14 @@
+gfs_main_loginpage:
+    path:     /
+    defaults: { _controller: GFSMainBundle:Main:login }
+
+login_check:
+    path:  /login_check
+
+logout:
+    path:  /logout
+
+
+gfs_main_homepage:
+    path:     /gestionScolarite/accueil
+    defaults: { _controller: GFSMainBundle:Main:index }

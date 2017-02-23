@@ -1,0 +1,257 @@
+{% extends "::base.html.twig" %}
+{% block titlePage %}
+    Statistiques globales
+{% endblock %}
+{% block contentPage %}
+    <div id="contents" ng-controller="globalStatCtrl as showCase">
+        <div class = "row">
+            <div class="col-sm-12">
+                <div class="panel panel-card">
+                    <a md-ink-ripple class="md-btn md-fab blue m-r md-fab-offset pull-right">
+                    <span class="text-white">
+                        <i class="icon mdi-action-trending-up"></i>
+                    </span></a>
+                    <div class="md-whiteframe-z0 bg-white">
+                        <ul class="nav nav-lines nav-tabs nav-justified">
+                          <li class="active">
+                            <a href data-toggle="tab" data-target="#tab_9">Mode affichage <span class="badge bg-info badge-xs">6</span></a>
+                          </li>
+                          <li>
+                            <a href data-toggle="tab" data-target="#tab_8">Critére <span class="badge bg-info badge-xs">13</span></a>
+                          </li>
+                        </ul>
+                        <div class="tab-content p m-b-md clear b-t b-t-2x">
+                          <div role="tabpanel" class="tab-pane animated fadeInUp" id="tab_7">
+                              <form class="form-horizontal" role="form">
+                                  
+                              </form>
+                          </div>
+                          <div role="tabpanel" class="tab-pane animated fadeInLeft" id="tab_8">
+                               <form class = "form-horizontal">
+                                   <div class="row">
+                                      <div class="col-lg-6">
+                                          <div class="form-group" style="margin-left:2%;">
+                                              <label>Départements</label>
+                                              <select class="form-control" ng-change="loadOption()" ng-model="nomDepartement">
+                                                <option value='Tout'>Tout</option>
+                                                {%for departement in listeDepartement %}
+                                                <option value="{{departement.nom}}">
+                                                    {{departement.nom}}
+                                                </option>
+                                                {% endfor %}
+                                              </select>
+                                           </div>
+                                      </div>
+                                      <div class="col-lg-6">
+                                           <div class="form-group" style="margin-left:2%;margin-right:2%;">
+                                              <label>Formation</label>
+                                              <select class="form-control" ng-model="nomFormation">
+                                                <option value="Tout">Tout</option>
+                                                <option ng-repeat="formation in listeFormations" ng-if="formation.nomOption == nomOption" value="[[formation.nom]]">
+                                                    [[formation.nom]]
+                                                </option>
+                                              </select>
+                                           </div>
+                                      </div>
+                                  </div>
+                                 <div class="row">
+                                     <div class="col-lg-6">
+                                         <div class="form-group" style="margin-left:2%;">
+                                            <label>Option</label>
+                                            <select class="form-control" ng-change="loadFormation()" ng-model="nomOption">
+                                               <option value='Tout'>Tout</option>
+                                               <option ng-repeat="o in listeOptions" ng-if="o.nomDepartement == nomDepartement" value="[[o.nom]]">
+                                                    [[o.nom]]
+                                                </option>
+                                            </select>
+                                       </div>
+                                     </div>
+                                     <div class="col-lg-6">
+                                         <div class="form-group" style="margin-left:2%;margin-right:2%;">
+                                            <label>Niveau</label>
+                                            <select class="form-control" ng-change=" " ng-model="niveau">
+                                               <option value='Tout'>Tout</option>
+                                               <option value='1'>1</option> 
+                                               <option value='2'>2</option> 
+                                               <option value='3'>3</option> 
+                                               <option value='pro'>Pro</option> 
+                                            </select>
+                                       </div>
+                                     </div>
+                                  </div>
+                                  <hr>
+                                   <div class="row">
+                                       <div class="col-lg-6">
+                                            <label style="margin-top:2%;">Mots Clés </label><input ng-model="motCle" type="text" class="form-control" placeholder="Nom(s) | Prénom(s) | CIN | Numéro Carte" style="margin-left:2;margin-right:2%;">
+                                            <label style="margin-top:2%;"> Sexe</label>
+                                            <select class="form-control" style="margin-left:2;margin-right:2;" ng-model="sexe">
+                                              <option>Tout</option> 
+                                              <option value="masculin">Homme</option>
+                                              <option value="féminin">Femme</option>
+                                            </select>
+                                            <label style="margin-top:2%;"> Série Bac</label>
+                                            <select class="form-control" style="margin-left:2;margin-right:2;" ng-model="serieBac">
+                                               <option>Tout</option> 
+                                               <option>s1</option>
+                                               <option>s2</option>
+                                               <option>s3</option>
+                                            </select>
+                                            <label style="margin-top:2%;"> Nature</label>
+                                            <select class="form-control" ng-model="nature" style="margin-left:2;margin-right:2;">
+                                               <option value="Tout">Tout</option> 
+                                               <option value="jour">Jour</option>
+                                               <option value="nuit">Nuit</option>
+                                            </select>
+                                            <label style="margin-top:2%;"> Statut</label>
+                                            <select class="form-control" ng-model="statut" style="margin-left:2;margin-right:20;">
+                                               <option value="Tout">Tout</option> 
+                                               <option value="prive">privé</option>
+                                               <option value="public">public</option>
+                                            </select>
+                                       </div>
+                                       <div class="col-lg-6">
+                                           <label style="margin-top:2%;">Age </label><input ng-model="age" type="number" class="form-control" style="margin-left:2;margin-right:2;">
+                                           <label style="margin-top:2%;">Lieu de Naissance </label><input ng-model="lieuNaiss" type="text" class="form-control" placeholder="lieu" style="margin-left:2;margin-right:2;">
+                                           <label style="margin-top:2%;"> Nationalité</label>
+                                           <select class="form-control" ng-model="nationalite" style="margin-left:2;margin-right:2;">
+                                               <option>Tout</option> 
+                                               {% for nationalite in listeNationalite %}
+                                                   <option value="{{nationalite.nom}}">{{nationalite.nom}}</option>
+                                               {% endfor %}
+                                            </select>
+                                            <label style="margin-top:2%;"> Résultat</label>
+                                            <select class="form-control" ng-model="resultat" style="margin-left:2;margin-right:2;">
+                                               <option value="Tout">Tout</option> 
+                                               <option value="annee en cours">Année en cours</option>
+                                               <option value="passe">Passe</option>
+                                               <option value="abandon">Abandon</option>
+                                               <option value="redouble">Redouble</option>
+                                               <option value="exclu">Exclu</option>
+                                            </select>
+                                       </div>
+                                   </div>
+                               </form>
+                          </div>
+                          <div role="tabpanel" class="tab-pane animated fadeInDown active" id="tab_9">
+                              <div class="row">
+                                  <div class="col-lg-6 ">
+                                    <p md-ink-ripple class="md-btn md-flat m-b btn-fw text-info">
+                                      <label class="md-check">
+                                        <input type="radio" name="typeChart" ng-model="typeChart" value="bar">
+                                        <i class="blue"></i>
+                                        Bar Chart
+                                      </label>
+                                    </p>
+                                    <br>
+                                    <p md-ink-ripple class="md-btn md-flat m-b btn-fw text-success">
+                                      <label class="md-check">
+                                        <input type="radio" ng-model="typeChart" value="column" name="typeChart">
+                                        <i class="green"></i>
+                                        Column Chart
+                                      </label>
+                                    </p>
+                                    <br>
+                                    <p md-ink-ripple class="md-btn md-flat m-b btn-fw text-warning">
+                                      <label class="md-check">
+                                        <input type="radio" ng-model="typeChart" value="pie" name="typeChart">
+                                        <i class="yellow"></i>
+                                        Pie CHart
+                                      </label>
+                                    </p>
+                                    <br>
+                                    <p md-ink-ripple class="md-btn md-flat m-b btn-fw text-danger">
+                                      <label class="md-check">
+                                        <input type="radio" ng-model="typeChart" value="line" name="typeChart">
+                                        <i class="red"></i>
+                                        Area Chart
+                                      </label>
+                                    </p>
+                                  </div>
+                                  <div class="col-lg-6">   <label style="margin-top:2%;"> Catégories</label>
+                                    <select class="form-control" style="margin-left:2;margin-right:2;" ng-model="catChoisi">
+                                       <option ng-repeat="c in categorie" ng-if="c != groupeDe">[[c]]</option>
+                                    </select>
+                                    <label style="margin-top:2%;"> Regroupé en</label>
+                                    <select ng-disabled="disableChoixAxe" class="form-control" style="margin-left:2;margin-right:2;" ng-model="groupeDe">
+                                       <option ng-repeat="c in categorie" ng-if="c != catChoisi">[[c]]</option>
+                                    </select>
+                                  </div>
+                              </div>
+                          </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class = "row">
+            <div class="col-sm-12">
+                <div class="panel panel-card">
+                    <div class="md-whiteframe-z0 bg-white">
+                        <ul class="nav nav-lines nav-tabs nav-justified">
+                            <li>
+                                <a href data-toggle="tab" data-target="#tab_91">Affichage graphique</a>
+                            </li>
+                            <li class="active">
+                                <a href data-toggle="tab" data-target="#tab_81">Affichage Tableau</a>
+                            </li>
+                        </ul>
+                        <div class="tab-content p m-b-md clear b-t b-t-2x">
+                            <div role="tabpanel" class="tab-pane animated fadeInLeft" id="tab_91">
+                                <div id="container">Selectionner d'abord un type de diagramme à afficher.</div>
+                            </div>
+                            <div role="tabpanel" class="tab-pane animated fadeInDown active" id="tab_81">
+                                <div style="overflow-y: scroll;">
+                                    <table class= "table table-hover">
+                                        <thead>
+                                        <tr>
+                                            <th>Prenom</th>
+                                            <th>Nom</th>
+                                            <th>Date de naissance</th>
+                                            <th>Lieu de naissance</th>
+                                            <th>Pays de naissance</th>
+                                            <th ng-if="affiche.sexe">Sexe</th>
+                                            <th>Tel</th>
+                                            <th>CIN</th>
+                                            <th ng-if="affiche.serieBac">Série Bac</th>
+                                            <th ng-if="affiche.nationalite">Nationalité</th>
+                                            <th ng-if="affiche.departement">Département</th>
+                                            <th ng-if="affiche.formation">Formation</th>
+                                            <th ng-if="affiche.option">Option</th>
+                                            <th ng-if="affiche.nature">Nature</th>
+                                            <th ng-if="affiche.statut">Statut</th>
+                                            <th ng-if="affiche.niveau">Niveau</th>
+                                            <th ng-if="affiche.resultat">Résultat</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr ng-repeat = "data in listeStat">
+                                            <td style="vertical-align:middle;">[[data.prenom]]</td>
+                                            <td style="vertical-align:middle;">[[data.nom]]</td>
+                                            <td style="vertical-align:middle;">[[data.dateNaiss.date]]</td>
+                                            <td style="vertical-align:middle;">[[data.lieuNaiss]]</td>
+                                            <td style="vertical-align:middle;">[[data.paysNaiss]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.sexe">[[data.sexe]]</td>
+                                            <td style="vertical-align:middle;">[[data.tel]]</td>
+                                            <td style="vertical-align:middle;">[[data.cin]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.serieBac">[[data.serieBac]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.nationalite">[[data.nationalite]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.departement">[[data.nomDepartement]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.formation">[[data.nomFormation]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.option">[[data.nomOption]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.nature">[[data.nature]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.statut">[[data.statut]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.niveau">[[data.niveau]]</td>
+                                            <td style="vertical-align:middle;" ng-if="affiche.resultat">[[data.resultat]]</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock %}

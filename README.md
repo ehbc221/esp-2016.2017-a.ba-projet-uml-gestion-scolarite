@@ -1,2 +1,4 @@
-# esp-projet-uml-dic1-gestion-scolarite
-Projet UML - Gestion Scolarité - ESP - DIC 1 - 2016/2017
+Projet-uml
+==========
+
+A Symfony project created on December 23, 2016, 1:00 pm.

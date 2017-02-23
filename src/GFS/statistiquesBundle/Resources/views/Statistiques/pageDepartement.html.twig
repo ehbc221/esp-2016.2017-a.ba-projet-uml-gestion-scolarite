@@ -1,0 +1,120 @@
+{% extends "::base.html.twig" %}
+{% block titlePage %}
+    <div ng-controller="indexCtrl">
+        {{departement.nom}}
+    </div>
+{% endblock %}
+{% block contentPage %}
+    <div ng-controller="pageDepartementCtrl as vm" ng-init="idDepartement={{departement.id}}">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa"></i> Voir Statisques </h3>
+                    </div>
+                    <div class="panel-body">
+                            <form>
+                                <div class="col-md-12">
+                                    <select class="form-control" ng-change="changeView()" ng-model="nomFormation">
+                                        <option value="Globales">Globales</option>
+                                        <option ng-repeat="formation in listeFormations" ng-if="formation.idDepartement == idDepartement" value="[[formation.nom]]">
+                                            [[formation.nom]]
+                                        </option>
+                                    </select>
+                                </div>
+                            </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row" ng-if="global">
+            <div class="card">
+                <div ng-show="chargement" style="height:100%" class="row">
+                    <div style="text-align:center"><i class="fa fa-spinner fa-spin" style="font-size:50px; margin-top:1%"></i></div>
+                </div>
+                <div  ng-show="!chargement">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div google-chart chart="genderChartObjectPub" style="height:600px; width:100%;"></div>  
+                        </div>
+                        <div class="col-md-6">
+                          <div google-chart chart="genderChartObjectPrive" style="height:600px; width:100%;"></div>  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div google-chart chart="niveauChartObjectPub" style="height:600px; width:100%;"></div>  
+                        </div>
+                        <div class="col-md-6">
+                          <div google-chart chart="niveauChartObjectPrive" style="height:600px; width:100%;"></div>  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div google-chart chart="nationalityChartObjectPub" style="height:600px; width:100%;"></div>  
+                        </div>
+                        <div class="col-md-6">
+                          <div google-chart chart="nationalityChartObjectPrive" style="height:600px; width:100%;"></div>  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div google-chart chart="tauxReussiteChartObjectPub" style="height:600px; width:100%;"></div>     
+                        </div>
+                        <div class="col-md-6">
+                            <div google-chart chart="tauxReussiteChartObjectPrive" style="height:600px; width:100%;"></div>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="row" ng-if="!global">
+            <div class="card">
+                <div ng-show="chargement1" class="row">
+                    <div style="text-align:center"><i class="fa fa-spinner fa-spin" style="font-size:50px; margin-top:10%"></i></div>
+                </div>
+                <div  ng-show="!chargement">
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div google-chart chart="FormationgenderChartObjectPub" style="height:600px; width:100%;"></div>  
+                        </div>
+                        <div class="col-md-6">
+                          <div google-chart chart="FormationgenderChartObjectPrive" style="height:600px; width:100%;"></div>  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div google-chart chart="FormationniveauChartObjectPub" style="height:600px; width:100%;"></div>  
+                        </div>
+                        <div class="col-md-6">
+                          <div google-chart chart="FormationniveauChartObjectPrive" style="height:600px; width:100%;"></div>  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                          <div google-chart chart="FormationnationalityChartObjectPub" style="height:600px; width:100%;"></div>  
+                        </div>
+                        <div class="col-md-6">
+                          <div google-chart chart="FormationnationalityChartObjectPrive" style="height:600px; width:100%;"></div>  
+                        </div>
+                    </div>
+                    <hr>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div google-chart chart="FormationtauxReussiteChartObjectPub" style="height:600px; width:100%;"></div>     
+                        </div>
+                        <div class="col-md-6">
+                            <div google-chart chart="FormationtauxReussiteChartObjectPrive" style="height:600px; width:100%;"></div>     
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>    
+{% endblock %} 

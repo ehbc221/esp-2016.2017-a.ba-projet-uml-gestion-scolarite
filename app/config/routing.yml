@@ -1,0 +1,11 @@
+gf_sattestation:
+    resource: "@GFSattestationBundle/Resources/config/routing.yml"
+    prefix:   /gestionScolarite
+
+gfs_main:
+    resource: "@GFSMainBundle/Resources/config/routing.yml"
+    prefix:   /
+
+gf_sstatistiques:
+    resource: "@GFSstatistiquesBundle/Resources/config/routing.yml"
+    prefix:   /gestionScolarite
