@@ -69,3 +69,16 @@ c59845,127.0.0.1,GET,http://localhost:8000/assets/scripts/angular.min.js.map,148
 634edf,127.0.0.1,GET,http://localhost:8000/gestionScolarite/getAllEtudiantForStat,1487301342,,200
 52d293,127.0.0.1,GET,http://localhost:8000/gestionScolarite/attestation,1487301361,,200
 d73f74,127.0.0.1,GET,http://localhost:8000/gestionScolarite/getAllEtudiantForStat,1487301367,,200
+854c1e,127.0.0.1,GET,http://localhost:8000/,1487940247,,200
+471dc8,127.0.0.1,POST,http://localhost:8000/login_check,1487940294,,302
+f45cf0,127.0.0.1,GET,http://localhost:8000/,1487940295,,200
+9d43ef,127.0.0.1,GET,http://localhost:8000/,1488035920,,200
+07b85f,127.0.0.1,POST,http://localhost:8000/login_check,1488035939,,302
+244572,127.0.0.1,GET,http://localhost:8000/,1488035940,,200
+233ca0,127.0.0.1,POST,http://localhost:8000/login_check,1488035978,,302
+014047,127.0.0.1,GET,http://localhost:8000/,1488035980,,302
+a33d36,127.0.0.1,GET,http://localhost:8000/gestionScolarite/accueil,1488035982,,200
+33dede,127.0.0.1,GET,http://localhost:8000/gestionScolarite/getAllEtudiantForStat,1488035990,,200
+438453,127.0.0.1,GET,http://localhost:8000/gestionScolarite/attestation,1488036060,,200
+626a61,127.0.0.1,GET,http://localhost:8000/gestionScolarite/getAllEtudiantForStat,1488036171,,200
+f5052b,127.0.0.1,GET,http://localhost:8000/gestionScolarite/listes,1488036204,,200
